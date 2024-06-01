@@ -24,18 +24,30 @@ function printDepthFirst(start) {
   let visited = new Set();
 
   //loop through stack with while loop for while stack has elements
-  while(stack) {
+  while(stack.length > 0) {
 
   //take the node off of the top of the stack (pop off end of array) and store in variable
   let currNode = stack.pop();
 
-  //print variable
+  //ask if the neighbor is part of the visited set
+  if(!visited.has(currNode)) {
+
+      //print variable
   console.log(currNode);
 
-  //ask if the neighbor is part of the visited set
-  if(!visited[currNode])
-  //if unvisited send to queue
+  visited.add(currNode);
 
+for (let neighbor of adjList[currNode]) {
+
+  if(!visited.has(neighbor)) {
+
+     //if unvisited send to stack
+  stack.push(neighbor);
+
+  }
+ }
+}
+}
 
 }
 
